@@ -2,6 +2,7 @@ import faiss
 import numpy as np
 import pickle
 import os
+from loguru import logger
 from typing import List, Dict, Tuple
 from agent.llm import LLMClient
 
@@ -58,6 +59,7 @@ class KnowledgeBase:
     def add_knowledge(self, content: str, metadata: Dict):
         """添加知识到知识库"""
         embedding = self.llm_client.get_embedding(content)
+        logger.info(f'content={content}, embedding={embedding}')
         embedding_array = np.array([embedding], dtype=np.float32)
         
         self.index.add(embedding_array)
@@ -84,7 +86,7 @@ class KnowledgeBase:
                     "metadata": self.metadata[idx],
                     "score": float(score)
                 })
-        
+        logger.info(results)
         return results
     
     def _save_index(self):

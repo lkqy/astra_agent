@@ -7,13 +7,13 @@ class AgentConfig:
     # OpenAI配置
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
     openai_base_url: str = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
-    model_name: str = "gpt-4"
+    model_name: str = "qwen-plus"
     temperature: float = 0.1
     max_tokens: int = 2000
     
     # FAISS配置
-    embedding_model: str = "text-embedding-ada-002"
-    vector_dim: int = 1536
+    embedding_model: str = "text-embedding-v4"
+    vector_dim: int = 1024
     faiss_index_path: str = "./data/knowledge_index.faiss"
     
     # Agent配置

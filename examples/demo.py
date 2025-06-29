@@ -4,10 +4,9 @@ from agent.core import EngineerAgent
 def main():
     # 配置Agent
     config = AgentConfig(
-        openai_api_key="your-api-key-here",
-        model_name="gpt-4",
         enable_log_analysis=True,
-        enable_metric_query=True
+        enable_metric_query=True,
+        model_name='qwen-plus'
     )
     
     # 创建Agent

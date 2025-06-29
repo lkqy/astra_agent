@@ -2,6 +2,8 @@ from typing import List, Dict, Any, Optional
 from agent.llm import LLMClient
 from agent.knowledge import KnowledgeBase
 from agent.tools import ToolRegistry
+from loguru import logger
+import json
 
 class ReasoningEngine:
     def __init__(self, llm_client: LLMClient, knowledge_base: KnowledgeBase, 
@@ -31,6 +33,7 @@ class ReasoningEngine:
         messages.extend(conversation_history)
         messages.append({"role": "user", "content": problem})
         
+        logger.info(json.dumps(messages, ensure_ascii=False))
         # 3. 执行多步推理
         for step in range(self.config.max_reasoning_steps):
             # 获取工具schema
